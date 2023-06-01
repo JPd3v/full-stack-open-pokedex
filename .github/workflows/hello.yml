@@ -13,6 +13,7 @@ jobs:
       run: |
           echo "Hello World!"
     - name: current date
-      run:  date
+      run: |
+          echo date
     - name: list directory contents
-      run : ls -1
+      run : echo ls -1
