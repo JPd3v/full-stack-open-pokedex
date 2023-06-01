@@ -1,31 +1,29 @@
 name: pipeline
 
-
 on:
   push:
     branches:
       - master
-  
+
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with: 
-          node-version: '16'
+        with:
+          node-version: "16"
       - name: install dependencies
         run: npm install
       - name: runs linter
         run: npm run eslint
-      - name: build project 
+      - name: build project
         run: npm run build
-      - name: runs tests 
+      - name: runs tests
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
           start: npm run start-prod
-          wait-on: http://localhost:5000
-      
+          wait-on: http://localhost:8080
