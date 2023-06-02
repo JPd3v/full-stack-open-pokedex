@@ -15,8 +15,6 @@ jobs:
           node-version: "16"
       - name: install dependencies
         run: npm install
-      - name: runs backend
-        run: npm run start-prod
       - name: runs linter
         run: npm run eslint
       - name: build project
