@@ -15,6 +15,8 @@ jobs:
           node-version: "16"
       - name: install dependencies
         run: npm install
+      - name: runs backend
+        run: npm run start-prod
       - name: runs linter
         run: npm run eslint
       - name: build project
@@ -27,3 +29,11 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.6.0
+        with:
+          render-token: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          retries: 2
+          wait: 16000
+          sleep: 30000
