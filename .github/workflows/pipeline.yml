@@ -31,7 +31,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000     
       - name: Trigger deployment
-        if: ${{ github.event_name == 'push' &&  join(github.event.commits.*.message,', ').contains("#skip") }}
+        if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
   tag_release:
     needs: [deployment_pipeline]
@@ -39,8 +39,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Bump version and push tag
-        if: ${{ github.event_name == 'push' &&  join(github.event.commits.*.message,', ').contains("#skip") }}
         uses: anothrNick/github-tag-action@1.66.0
+        if: ${{ join(github.event.commits.*.message,', ').contains("#skip") }}
         env:
           DEFAULT_BUMP: patch
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
