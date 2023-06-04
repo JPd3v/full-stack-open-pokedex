@@ -16,6 +16,7 @@ app.get("/health", (req, res) => {
   // new comment to test if statement deploy in github actions
   // another comment
   // this is the good one, testing deployment after PR merge
+  // protected master branch
 });
 
 app.listen(PORT, () => {
