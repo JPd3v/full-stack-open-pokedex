@@ -8,13 +8,13 @@ on:
     - cron: 0 * * * *
 
 jobs: 
-  check_deployed_app_healt:
+  check_deployed_app_health:
     runs-on: ubuntu-20.04
     steps:
        - name: Check the deployed service URL
          uses: jtalk/url-health-check-action@v3
          with:
-            url: https://pokedex-ci-cd-test.onrender.com/health
+            url: https://pokedex-ci-cd-test.onrender8.com/health
             max-attempts: 3 
             retry-delay: 5s 
 
