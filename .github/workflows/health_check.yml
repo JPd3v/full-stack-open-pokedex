@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master
-  schedule:
-    - cron: 0 * * * *
-
+  #schedule:
+  #  - cron: 0 * * * *
+  
 jobs: 
   check_deployed_app_health:
     runs-on: ubuntu-20.04
